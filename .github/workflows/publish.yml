@@ -29,13 +29,13 @@ jobs:
       run: mkdir -p releases
 
     - name: Build Linux Package
-      run: cd releases && fyne package -os linux -icon icon.png
+      run: fyne package -os linux -icon icon.png
 
     - name: Build MacOS Package
-      run: cd releases && fyne package -os darwin -icon icon.png
+      run: fyne package -os darwin -icon icon.png
 
     - name: Build Windows Package
-      run: cd releases && fyne package -os windows -icon icon.png
+      run: fyne package -os windows -icon icon.png
 
     - name: Release Linux Package
       uses: svenstaro/upload-release-action@v2
