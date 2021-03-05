@@ -28,12 +28,6 @@ jobs:
     - name: Build Linux Package
       run: fyne package -os linux -icon icon.png
 
-    - name: Build MacOS Package
-      run: fyne package -os darwin -icon icon.png
-
-    - name: Build Windows Package
-      run: fyne package -os windows -icon icon.png
-
     - name: Release Linux Package
       uses: svenstaro/upload-release-action@v2
       with:
@@ -41,6 +35,9 @@ jobs:
         file: impallette
         asset_name: impallette
         tag: ${{ github.ref }}
+
+    - name: Build MacOS Package
+      run: fyne package -os darwin -icon icon.png
 
     - name: Release MacOS Package
       uses: svenstaro/upload-release-action@v2
@@ -50,10 +47,14 @@ jobs:
         asset_name: impallette.app
         tag: ${{ github.ref }}
 
-    - name: Release Windows Package
-      uses: svenstaro/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: impallette.exe
-        asset_name: impallette.exe
-        tag: ${{ github.ref }}
+    # - name: Build Windows Package
+    #   run: fyne package -os windows -icon icon.png
+
+    # - name: Release Windows Package
+    #   uses: svenstaro/upload-release-action@v2
+    #   with:
+    #     repo_token: ${{ secrets.GITHUB_TOKEN }}
+    #     file: impallette.exe
+    #     asset_name: impallette.exe
+    #     tag: ${{ github.ref }}
+
