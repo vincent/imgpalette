@@ -20,6 +20,9 @@ jobs:
         go-version: 1.15
 
     - name: Install Fyne bundler
+      run: sudo apt-get install libx11-dev
+
+    - name: Install Fyne bundler
       run: go get fyne.io/fyne/v2/cmd/fyne
 
     - name: Create directories
