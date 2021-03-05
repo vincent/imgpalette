@@ -22,6 +22,9 @@ jobs:
     - name: Install dependencies
       run: sudo apt-get install xorg-dev
 
+    - name: Prepare directories
+      run: mkdir -p releases
+
     - name: Install Fyne bundler
       run: go get fyne.io/fyne/v2/cmd/fyne
 
@@ -32,7 +35,7 @@ jobs:
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: impallette
+        file: releases/impallette
         asset_name: impallette
         tag: ${{ github.ref }}
 
@@ -43,7 +46,7 @@ jobs:
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: impallette.app
+        file: releases/impallette.app
         asset_name: impallette.app
         tag: ${{ github.ref }}
 
@@ -54,7 +57,7 @@ jobs:
     #   uses: svenstaro/upload-release-action@v2
     #   with:
     #     repo_token: ${{ secrets.GITHUB_TOKEN }}
-    #     file: impallette.exe
+    #     file: releases/impallette.exe
     #     asset_name: impallette.exe
     #     tag: ${{ github.ref }}
 
