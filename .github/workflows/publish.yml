@@ -1,0 +1,55 @@
+name: Go
+
+on:
+  push:
+    branches:
+      - 'testbuild'
+    tags:
+      - '*'
+
+jobs:
+
+  publish:
+    name: Publish for ${{ matrix.os }}
+    runs-on: ubuntu-latest
+
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.15
+
+    - name: Create directories
+      run: mkdir -p releases
+
+    - name: Build Linux Package
+      run: cd releases && fyne package -os linux -icon icon.png -sourceDir ..
+
+    - name: Build MacOS Package
+      run: cd releases && fyne package -os darwin -icon icon.png -sourceDir ..
+
+    - name: Build Windows Package
+      run: cd releases && fyne package -os windows -icon icon.png -sourceDir ..
+
+    - name: Release Linux Package
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: impallette
+        asset_name: impallette
+        tag: ${{ github.ref }}
+
+    - name: Release MacOS Package
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: impallette.app
+        asset_name: impallette.app
+        tag: ${{ github.ref }}
+
+    - name: Release Windows Package
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: impallette.exe
+        asset_name: impallette.exe
+        tag: ${{ github.ref }}
