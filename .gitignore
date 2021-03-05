@@ -1,12 +1,19 @@
+
+# Os files
+.DS_Store
+
 # Binaries for programs and plugins
 *.exe
 *.exe~
+*.app
+*.app~
 *.dll
 *.so
 *.dylib
 
 # Test binary, built with `go test -c`
 *.test
+impallette
 
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
