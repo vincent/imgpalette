@@ -27,6 +27,8 @@ jobs:
 
     - name: Build Linux Package
       run: fyne package -os linux -icon icon.png
+    - name: Zip MacOS Package
+      run: zip -r imgpalette-linux.zip imgpalette
 
     # - name: Release Linux Package
     #   uses: svenstaro/upload-release-action@v2
@@ -39,7 +41,7 @@ jobs:
     - name: Build MacOS Package
       run: fyne package -os darwin -icon icon.png
     - name: Zip MacOS Package
-      run: zip -r imgpalette.zip imgpalette.app
+      run: zip -r imgpalette-macosx.zip imgpalette.app
 
     # - name: Release MacOS Package
     #   uses: svenstaro/upload-release-action@v2
@@ -76,6 +78,6 @@ jobs:
     - name: Release with assets
       uses: AButler/upload-release-assets@v2.0
       with:
-        files: 'imgpalette.{app,tar.gz}'
+        files: 'imgpalette-macosx.zip;imgpalette-linux.zip'
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         release-tag: release-${{ github.ref }}
