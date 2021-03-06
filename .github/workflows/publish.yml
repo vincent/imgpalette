@@ -60,6 +60,8 @@ jobs:
     #     asset_name: imgpalette.exe
     #     tag: ${{ github.ref }}
 
+    - name: List files
+      run: ls -alh
     - name: Release with assets
       uses: AButler/upload-release-assets@v2.0
       with:
