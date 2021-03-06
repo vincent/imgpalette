@@ -78,4 +78,4 @@ jobs:
       with:
         files: 'imgpalette.{app,tar.gz}'
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        release-tag: ${{ github.ref }}
+        release-tag: release-${{ github.ref }}
