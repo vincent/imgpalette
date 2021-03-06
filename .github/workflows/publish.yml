@@ -29,7 +29,7 @@ jobs:
       run: go get fyne.io/fyne/v2/cmd/fyne
 
     - name: Build Linux Package
-      run: cd releases && fyne package -os linux -icon ../icon.png -sourceDir ..
+      run: cd releases && fyne package -os linux -icon ../icon.png -sourceDir .. && cd ..
 
     - name: Release Linux Package
       uses: svenstaro/upload-release-action@v2
@@ -40,7 +40,7 @@ jobs:
         tag: ${{ github.ref }}
 
     - name: Build MacOS Package
-      run: cd releases && fyne package -os darwin -icon ../icon.png -sourceDir ..
+      run: cd releases && fyne package -os darwin -icon ../icon.png -sourceDir .. && cd ..
 
     - name: Release MacOS Package
       uses: svenstaro/upload-release-action@v2
@@ -51,7 +51,7 @@ jobs:
         tag: ${{ github.ref }}
 
     # - name: Build Windows Package
-    #  run: cd releases && fyne package -os windows -icon ../icon.png -sourceDir ..
+    #  run: cd releases && fyne package -os windows -icon ../icon.png -sourceDir .. && cd ..
 
     # - name: Release Windows Package
     #   uses: svenstaro/upload-release-action@v2
