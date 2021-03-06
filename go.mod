@@ -1,4 +1,4 @@
-module github.com/vincent/impallette
+module github.com/vincent/imgpalette
 
 go 1.15
 

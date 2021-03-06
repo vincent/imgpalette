@@ -32,21 +32,21 @@ jobs:
     #   uses: svenstaro/upload-release-action@v2
     #   with:
     #     repo_token: ${{ secrets.GITHUB_TOKEN }}
-    #     file: impallette
-    #     asset_name: impallette
+    #     file: imgpalette
+    #     asset_name: imgpalette
     #     tag: ${{ github.ref }}
 
     - name: Build MacOS Package
       run: fyne package -os darwin -icon icon.png
     - name: Zip MacOS Package
-      run: zip -r impallette.zip impallette.app
+      run: zip -r imgpalette.zip imgpalette.app
 
     # - name: Release MacOS Package
     #   uses: svenstaro/upload-release-action@v2
     #   with:
     #     repo_token: ${{ secrets.GITHUB_TOKEN }}
-    #     file: impallette.app
-    #     asset_name: impallette.app
+    #     file: imgpalette.app
+    #     asset_name: imgpalette.app
     #     tag: ${{ github.ref }}
 
     # - name: Build Windows Package
@@ -56,13 +56,13 @@ jobs:
     #   uses: svenstaro/upload-release-action@v2
     #   with:
     #     repo_token: ${{ secrets.GITHUB_TOKEN }}
-    #     file: impallette.exe
-    #     asset_name: impallette.exe
+    #     file: imgpalette.exe
+    #     asset_name: imgpalette.exe
     #     tag: ${{ github.ref }}
 
     - name: Release with assets
       uses: AButler/upload-release-assets@v2.0
       with:
-        files: 'impallette;impallette.zip'
+        files: 'imgpalette;imgpalette.zip'
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         release-tag: ${{ github.ref }}

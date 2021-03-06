@@ -10,7 +10,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/vincent/impallette/internal"
+	"github.com/vincent/imgpalette/internal"
 
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
@@ -40,7 +40,7 @@ type App struct {
 }
 
 func NewApp() *App {
-	a := app.NewWithID("com.impallette")
+	a := app.NewWithID("com.imgpalette")
 	w := a.NewWindow("ColorPick")
 
 	grid := container.New(layout.NewGridLayout(3))
