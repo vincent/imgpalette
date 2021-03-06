@@ -14,6 +14,13 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Get commit hash
+      id: vars
+      shell: bash
+      run: |
+        echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+
     - name: Set up Go
       uses: actions/setup-go@v2
       with:
@@ -68,10 +75,10 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: release-${{ github.ref }}
-        release_name: Release ${{ github.ref }}
+        tag_name: release-${{ steps.vars.outputs.sha_short }}
+        release_name: Release ${{ steps.vars.outputs.sha_short }}
         body: |
-                Release ${{ github.ref }} body
+                Release ${{ steps.vars.outputs.sha_short }} body
         
     - name: List files
       run: ls -alh
@@ -80,4 +87,4 @@ jobs:
       with:
         files: 'imgpalette-macosx.zip;imgpalette-linux.zip'
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        release-tag: release-${{ github.ref }}
+        release-tag: release-${{ steps.vars.outputs.sha_short }}
