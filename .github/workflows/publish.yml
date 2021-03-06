@@ -39,7 +39,7 @@ jobs:
     - name: Build MacOS Package
       run: fyne package -os darwin -icon icon.png
     - name: Zip MacOS Package
-      run: zip -r impallette.app.zip impallette.app
+      run: zip -r impallette.zip impallette.app
 
     # - name: Release MacOS Package
     #   uses: svenstaro/upload-release-action@v2
@@ -63,6 +63,6 @@ jobs:
     - name: Release with assets
       uses: AButler/upload-release-assets@v2.0
       with:
-        files: 'impallette;impallette.app'
+        files: 'impallette;impallette.zip'
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         release-tag: ${{ github.ref }}
