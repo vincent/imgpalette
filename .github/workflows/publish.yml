@@ -38,6 +38,8 @@ jobs:
 
     - name: Build MacOS Package
       run: fyne package -os darwin -icon icon.png
+    - name: Zip MacOS Package
+      run: zip -r impallette.app.zip impallette.app
 
     # - name: Release MacOS Package
     #   uses: svenstaro/upload-release-action@v2
