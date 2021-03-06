@@ -70,7 +70,6 @@ jobs:
         release_name: Release ${{ github.ref }}
         body: |
                 Release body
-        prerelease: true
         
     - name: List files
       run: ls -alh
@@ -79,3 +78,4 @@ jobs:
       with:
         files: 'imgpalette.{app,tar.gz}'
         repo-token: ${{ secrets.GITHUB_TOKEN }}
+        release-tag: ${{ github.ref }}
