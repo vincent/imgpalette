@@ -58,7 +58,8 @@ jobs:
     #     asset_name: impallette.exe
     #     tag: ${{ github.ref }}
 
-    - uses: AButler/upload-release-assets@v2.0
+    - uses: Release with assets
       with:
         files: 'impallette;impallette.app;impallette.exe'
         repo-token: ${{ secrets.GITHUB_TOKEN }}
+        release-tag: ${{ github.ref }}
