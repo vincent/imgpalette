@@ -3,7 +3,7 @@ name: Publish
 on:
   push:
     branches:
-      - 'testgh'
+      - 'release'
     tags:
       - '*'
 
@@ -66,10 +66,10 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ github.ref }}
+        tag_name: release-${{ github.ref }}
         release_name: Release ${{ github.ref }}
         body: |
-                Release body
+                Release ${{ github.ref }} body
         
     - name: List files
       run: ls -alh
