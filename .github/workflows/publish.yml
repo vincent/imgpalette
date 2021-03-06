@@ -65,6 +65,5 @@ jobs:
     - name: Release with assets
       uses: AButler/upload-release-assets@v2.0
       with:
-        files: 'imgpalette;imgpalette.zip'
+        files: 'imgpalette.{app,tar.gz}'
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        release-tag: ${{ github.ref }}
