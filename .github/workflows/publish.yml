@@ -22,42 +22,43 @@ jobs:
     - name: Install dependencies
       run: sudo apt-get install xorg-dev
 
-    - name: Prepare directories
-      run: mkdir -p releases
-
     - name: Install Fyne bundler
       run: go get fyne.io/fyne/v2/cmd/fyne
 
     - name: Build Linux Package
-      run: cd releases && fyne package -os linux -icon ../icon.png -sourceDir .. && cd ..
+      run: fyne package -os linux -icon icon.png
 
-    - name: Release Linux Package
-      uses: svenstaro/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: releases/impallette
-        asset_name: impallette
-        tag: ${{ github.ref }}
+    # - name: Release Linux Package
+    #   uses: svenstaro/upload-release-action@v2
+    #   with:
+    #     repo_token: ${{ secrets.GITHUB_TOKEN }}
+    #     file: impallette
+    #     asset_name: impallette
+    #     tag: ${{ github.ref }}
 
     - name: Build MacOS Package
-      run: cd releases && fyne package -os darwin -icon ../icon.png -sourceDir .. && cd ..
+      run: fyne package -os darwin -icon icon.png
 
-    - name: Release MacOS Package
-      uses: svenstaro/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: releases/impallette.app
-        asset_name: impallette.app
-        tag: ${{ github.ref }}
+    # - name: Release MacOS Package
+    #   uses: svenstaro/upload-release-action@v2
+    #   with:
+    #     repo_token: ${{ secrets.GITHUB_TOKEN }}
+    #     file: impallette.app
+    #     asset_name: impallette.app
+    #     tag: ${{ github.ref }}
 
     # - name: Build Windows Package
-    #  run: cd releases && fyne package -os windows -icon ../icon.png -sourceDir .. && cd ..
+    #   run: fyne package -os windows -icon icon.png
 
     # - name: Release Windows Package
     #   uses: svenstaro/upload-release-action@v2
     #   with:
     #     repo_token: ${{ secrets.GITHUB_TOKEN }}
-    #     file: releases/impallette.exe
+    #     file: impallette.exe
     #     asset_name: impallette.exe
     #     tag: ${{ github.ref }}
 
+    - uses: AButler/upload-release-assets@v2.0
+      with:
+        files: 'impallette;impallette.app;impallette.exe'
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
