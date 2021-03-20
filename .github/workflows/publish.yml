@@ -34,7 +34,7 @@ jobs:
 
     - name: Build Linux Package
       run: fyne package -os linux -icon icon.png
-    - name: Zip MacOS Package
+    - name: Zip Linux Package
       run: zip -r imgpalette-linux.zip imgpalette
 
     # - name: Release Linux Package

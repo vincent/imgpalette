@@ -77,7 +77,7 @@ func (a *App) toolbar(onAdd func()) *fyne.Container {
 
 	a.last = container.NewHBox()
 
-	a.sel = widget.NewSelect([]string{"rgb", "hex", "hsl"}, a.onFormatSelect)
+	a.sel = widget.NewSelect([]string{"rgb", "drgb", "hex", "hsl"}, a.onFormatSelect)
 	a.sel.SetSelected("rgb")
 
 	hbox := container.NewHBox(openButton, a.bar, layout.NewSpacer(), a.last, layout.NewSpacer(), a.sel)
@@ -191,6 +191,12 @@ func (a *App) toColorFormat(col color.Color) string {
 	case "rgb":
 		r, g, b, _ := col.RGBA()
 		return fmt.Sprintf("%v, %v, %v", r>>8, g>>8, b>>8)
+	case "drgb":
+		r, g, b, _ := col.RGBA()
+		rr := 1.0 / 255.0 * float64(r>>8)
+		gg := 1.0 / 255.0 * float64(g>>8)
+		bb := 1.0 / 255.0 * float64(b>>8)
+		return fmt.Sprintf("%1.3f, %1.3f, %1.3f", rr, gg, bb)
 	case "hex":
 		c, _ := internal.ColorToRGB(col)
 		return c.ToHTML()
